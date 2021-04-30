@@ -7,11 +7,11 @@ COWIN_URL = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calend
 
 def retriveQuery(pincode, date):
     url = COWIN_URL + pincode + '&date=' + date
-    posts = requests.get(COWIN_URL)
-    return render_template('search.html', posts=posts)
+    print(url)
+    posts = requests.get(url, headers = {"Authorization": "Bearer MYREALLYLONGTOKENIGOT"})
+    return render_template('search.html', posts=val )
 
-
-@app.route("/")
+@app.route('/',methods=['GET'])
 def index():
     pincode = request.args.get('pincode')
     date = request.args.get('date')
