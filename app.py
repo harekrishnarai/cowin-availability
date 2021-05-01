@@ -5,7 +5,10 @@ app = Flask(__name__)
 
 COWIN_URL = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode='
 
+
 def retriveQuery(pincode, date):
+    date = date[-2:] +  "-" + date[5:7] + "-" + date[:4]
+    print(date)
     url = COWIN_URL + pincode + '&date=' + date
     posts = requests.get(url, headers = {"Authorization": "Bearer MYREALLYLONGTOKENIGOT"})
     print(posts.json())
