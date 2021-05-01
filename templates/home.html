@@ -218,7 +218,8 @@
   
   var selectedState;
   $(document).ready(function () {
-    $(".custom-select").change(function () {
+    $("#state-dd").change(function () {
+      $('#district-dd').empty();
       selectedState = $(this).children("option:selected").val();
       alert("You have selected the state - " + selectedState);
       jQuery.ajax({
@@ -233,7 +234,6 @@
           },
           async: false
         });
-
     });
   });
 
