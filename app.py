@@ -10,7 +10,8 @@ def retriveQuery(pincode, date):
     date = date[-2:] +  "-" + date[5:7] + "-" + date[:4]
     print(date)
     url = COWIN_URL + pincode + '&date=' + date
-    posts = requests.get(url, headers = {"Authorization": "Bearer MYREALLYLONGTOKENIGOT"})
+
+    posts = requests.get(url, headers = {"Accept-Language": "hi_IN"})
     print(posts.json())
     print(url)
     val = posts.json()
