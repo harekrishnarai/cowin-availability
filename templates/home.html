@@ -45,11 +45,13 @@
     <form class="form-inline my-2 my-lg-0">
 
 
-      <select class="custom-select" id="state-dd">
+      <select class="custom-select" id="state-dd" name="state" >
         <option>Select State</option>
       </select>
-      <select class="custom-select" id="district-dd">
+      <select class="custom-select" id="district-dd" name="district">
         <option>Select District</option>
+    <input class="form-control mr-sm-2" name="date" required type="date" placeholder="Date (dd-mm-yyyy)"
+        aria-label="Search">
       </select>
 
       <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>

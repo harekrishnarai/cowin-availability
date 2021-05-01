@@ -6,11 +6,20 @@ app = Flask(__name__)
 COWIN_URL = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode='
 
 
-def retriveQuery(pincode, date):
+def retriveQueryForPin(pincode, date):
     date = date[-2:] +  "-" + date[5:7] + "-" + date[:4]
     print(date)
     url = COWIN_URL + pincode + '&date=' + date
+    posts = requests.get(url, headers = {"Accept-Language": "hi_IN"})
+    print(posts.json())
+    print(url)
+    val = posts.json()
+    return render_template('search.html', posts=val )
 
+def retriveQueryForState(district, date):
+    date = date[-2:] +  "-" + date[5:7] + "-" + date[:4]
+    print(date)
+    url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=' + district + '&date=' + date
     posts = requests.get(url, headers = {"Accept-Language": "hi_IN"})
     print(posts.json())
     print(url)
@@ -21,7 +30,11 @@ def retriveQuery(pincode, date):
 def index():
     pincode = request.args.get('pincode')
     date = request.args.get('date')
+    state = request.args.get('state')
+    district = request.args.get('district')
     if pincode:
-        return retriveQuery(pincode, date)
+        return retriveQueryForPin(pincode, date)
+    elif state:
+        return retriveQueryForState(district, date)
     return render_template('home.html')
 
