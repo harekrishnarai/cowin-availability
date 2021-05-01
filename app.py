@@ -20,7 +20,7 @@ def retriveQueryForState(district, date):
     date = date[-2:] +  "-" + date[5:7] + "-" + date[:4]
     print(date)
     url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=' + district + '&date=' + date
-    posts = requests.get(url, headers = {"Accept-Language": "hi_IN"})
+    posts = requests.get(url, headers = {"accept":"application/json", "Accept-Language": "hi_IN"})
     print(posts.json())
     print(url)
     val = posts.json()
