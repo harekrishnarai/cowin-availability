@@ -12,7 +12,6 @@ def retriveQuery(pincode, date):
     url = COWIN_URL + pincode + '&date=' + date
     posts = requests.get(url, headers = {"Authorization": "Bearer MYREALLYLONGTOKENIGOT"})
     print(posts.json())
-    print(url)
     val = posts.json()
     return render_template('search.html', posts=val )
 
