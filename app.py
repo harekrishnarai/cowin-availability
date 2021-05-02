@@ -12,6 +12,7 @@ def retriveQueryForPin(pincode, date):
     url = COWIN_URL + pincode + '&date=' + date
     posts = requests.get(url, headers = {"Accept-Language": "hi_IN"})
     print(posts.json())
+    print(posts.headers)
     print(url)
     val = posts.json()
     return render_template('search.html', posts=val )
