@@ -7,6 +7,7 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 cred = credentials.Certificate('key.json')
 firebase_admin.initialize_app(cred)
@@ -44,6 +45,7 @@ def create():
       return jsonify({"success": True}), 200
   except Exception as e:
       return f"An Error Occured: {e}"
+
 
 @app.route('/list', methods=['GET'])
 def read():
