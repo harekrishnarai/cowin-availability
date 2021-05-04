@@ -25,7 +25,7 @@ def createP():
         'email': request.form['email'],
         'pincode': request.form['pincode'],
         'date': request.form['date'],
-        'optin': "1"
+        'optin': "1",
         'type': "1"
       }
       document_reference=db.collection('cowinUsers').document()
@@ -41,7 +41,7 @@ def createD():
         'email': request.form['email'],
         'district': request.form['district'],
         'date': request.form['date'],
-        'optin': "1"
+        'optin': "1",
         'type': "2"
       }
       document_reference=db.collection('cowinUsers').document()
