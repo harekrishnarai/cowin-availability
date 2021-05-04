@@ -19,8 +19,7 @@ db = firestore.client()
 usersRef = db.collection('cowinUsers')
 
 @app.route('/addP', methods=['POST'])
-@cross_origin()
-def create():
+def createP():
   try:
       data = {
         'email': request.form['email'],
@@ -28,6 +27,7 @@ def create():
         'date': request.form['date'],
         'optin': "1"
       }
+
       document_reference=db.collection('cowinUsers').document()
       document_reference.set(data)
       return jsonify({"success": True}), 200
@@ -35,8 +35,7 @@ def create():
       return f"An Error Occured: {e}"
 
 @app.route('/addD', methods=['POST'])
-@cross_origin()
-def create():
+def createD():
   try:
       data = {
         'email': request.form['email'],
