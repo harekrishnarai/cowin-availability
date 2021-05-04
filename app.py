@@ -6,8 +6,12 @@ import firebase_admin
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
+cors = CORS(app, resource={
+r"/*":{
+    "origins":"*"
+}
+})
 
 cred = credentials.Certificate('key.json')
 firebase_admin.initialize_app(cred)
