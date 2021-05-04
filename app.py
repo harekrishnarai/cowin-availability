@@ -27,10 +27,9 @@ def createP():
         'date': request.form['date'],
         'optin': "1"
       }
-
       document_reference=db.collection('cowinUsers').document()
       document_reference.set(data)
-      return jsonify({"success": True}), 200
+      return jsonify({"success": "Subscribed Successfully"}), 200
   except Exception as e:
       return f"An Error Occured: {e}"
 
