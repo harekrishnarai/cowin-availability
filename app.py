@@ -54,13 +54,88 @@ def createD():
 @app.route('/list', methods=['GET'])
 def read():
   try:
-      # Check if ID was passed to URL query
       all_users = [doc.to_dict() for doc in usersRef.stream()]
       return jsonify(all_users), 200
   except Exception as e:
       return f"An Error Occured: {e}"
 
+@app.route('/updateP', methods=['POST', 'PUT'])
+def updateP():
+    try:
+        data = {
+          'email': request.args.get('email'),
+          'pincode': request.args.get('pincode'),
+          'date': request.args.get('date'),
+          'optin': request.args.get('optin'),
+          'type': "1"
+        }
+        id = request.args.get('id')
+        usersRef.document(id).update(data)
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+@app.route('/updateD', methods=['POST', 'PUT'])
+def updateD():
+    try:
+        data = {
+          'email': request.args.get('email'),
+          'district': request.args.get('district'),
+          'date': request.args.get('date'),
+          'optin': request.args.get('optin'),
+          'type': "2"
+        }
+        id = request.args.get('id')
+        usersRef.document(id).update(data)
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
 
 @app.route('/',methods=['GET'])
 def index():
     return jsonify({"success": True}), 200
+
+
+testusersRef = db.collection('testcowinUsers')
+@app.route('/testList', methods=['GET'])
+def testRead():
+  try:
+      all_testusers = [doc.to_dict() for doc in testusersRef.stream()]
+      return jsonify(all_testusers), 200
+  except Exception as e:
+      return f"An Error Occured: {e}"
+
+
+@app.route('/testUpdateD', methods=['POST', 'PUT'])
+def testUpdateD():
+    try:
+        data = {
+          'email': request.args.get('email'),
+          'district': request.args.get('district'),
+          'date': request.args.get('date'),
+          'optin': request.args.get('optin'),
+          'type': "2"
+        }
+        id = request.args.get('id')
+        testusersRef.document(id).update(data)
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+@app.route('/testUpdateP', methods=['POST', 'PUT'])
+def testUpdateP():
+    try:
+        data = {
+          'email': request.args.get('email'),
+          'pincode': request.args.get('pincode'),
+          'date': request.args.get('date'),
+          'optin': request.args.get('optin'),
+          'type': ""
+        }
+        id = request.args.get('id')
+        testusersRef.document(id).update(data)
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
