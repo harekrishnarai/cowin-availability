@@ -131,7 +131,7 @@ def testUpdateP():
           'pincode': request.args.get('pincode'),
           'date': request.args.get('date'),
           'optin': request.args.get('optin'),
-          'type': ""
+          'type': "1"
         }
         id = request.args.get('id')
         testusersRef.document(id).update(data)
